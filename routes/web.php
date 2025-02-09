@@ -21,4 +21,6 @@ Route::patch('/todolist/{todolist}/update-nama', [ToDoListController::class, 'up
 
 Route::get('/todolist/history', [ToDoListController::class, 'history'])->middleware('auth')->name('todolist.history');
 
-
+Route::get('/', function () {
+    return view('landing');
+})->name('landing');

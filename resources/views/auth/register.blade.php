@@ -49,6 +49,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Daftar</button>
+            <center>Sudah punya akun? <a href="/login">Login</a></center>
         </form>
     </div>
 </body>

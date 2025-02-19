@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    /* Base Button */
+    .neu-button {
+        @apply px-6 py-2 font-bold border-4 border-black transition-all duration-200;
+        @apply shadow-[4px_4px_0px_0px_rgba(0,0,0,1)];
+        @apply hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)];
+        @apply active:translate-x-[4px] active:translate-y-[4px] active:shadow-none;
+    }
+
+    /* Button Variants */
+    .neu-button-primary {
+        @apply bg-[#FF3366] text-white;
+    }
+
+    .neu-button-secondary {
+        @apply bg-[#00CC99] text-black;
+    }
+
+    .neu-button-danger {
+        @apply bg-[#FF6666] text-white;
+    }
+
+    .neu-button-warning {
+        @apply bg-[#FFB84D] text-black;
+    }
+
+    .neu-button-info {
+        @apply bg-[#3366FF] text-white;
+    }
+
+    /* Form Elements */
+    .neu-input {
+        @apply w-full px-4 py-3 border-4 border-black bg-white;
+        @apply focus:outline-none focus:ring-4 focus:ring-[#FF3366]/50;
+    }
+
+    .neu-select {
+        @apply w-full px-4 py-3 border-4 border-black bg-white;
+        @apply focus:outline-none focus:ring-4 focus:ring-[#FF3366]/50;
+    }
+
+    /* Table Styling */
+    .neu-table {
+        @apply border-4 border-black;
+    }
+
+    .neu-table th {
+        @apply bg-[#3366FF] text-white border-b-4 border-black px-4 py-2;
+    }
+
+    .neu-table td {
+        @apply border-b-4 border-black px-4 py-2;
+    }
+}

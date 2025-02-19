@@ -249,13 +249,37 @@
         `;
         document.head.appendChild(enhancedStyle);
 
-        // Tambahkan fungsi untuk meteor effect
+        // Update fungsi untuk meteor effect
         function createMeteor(x, y, angle) {
             const meteor = document.createElement('div');
+
+            // Random ukuran untuk variasi
+            const size = Math.random() * 3 + 1; // 1-4px height
+            const length = Math.random() * 30 + 15; // 15-45px length
+
             meteor.className = 'meteor';
+            meteor.style.height = `${size}px`;
+            meteor.style.width = `${length}px`;
             meteor.style.left = `${x}px`;
             meteor.style.top = `${y}px`;
             meteor.style.transform = `rotate(${angle}deg)`;
+
+            // Random warna untuk variasi
+            const colors = [
+                'rgba(255, 51, 102, 0.8)', // Pink
+                'rgba(51, 102, 255, 0.8)', // Blue
+                'rgba(255, 255, 255, 0.8)', // White
+                'rgba(255, 184, 77, 0.8)'  // Orange
+            ];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+            meteor.style.background = `linear-gradient(
+                to right,
+                ${randomColor},
+                ${randomColor.replace('0.8', '0.4')},
+                transparent
+            )`;
+
             document.body.appendChild(meteor);
             setTimeout(() => meteor.remove(), 500);
         }
@@ -276,13 +300,30 @@
             const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
 
             if (distance > 5) {
-                for (let i = 0; i < 3; i++) {
-                    const offsetX = Math.random() * 20 - 10;
-                    const offsetY = Math.random() * 20 - 10;
-                    createMeteor(currentX + offsetX, currentY + offsetY, angle);
+                // Increased number of meteors
+                for (let i = 0; i < 8; i++) { // Increased from 3 to 8
+                    // Wider spread of meteors
+                    const offsetX = Math.random() * 40 - 20; // -20 to +20
+                    const offsetY = Math.random() * 40 - 20; // -20 to +20
+
+                    // Add slight angle variation
+                    const angleVariation = (Math.random() - 0.5) * 30; // ±15 degrees
+                    createMeteor(
+                        currentX + offsetX,
+                        currentY + offsetY,
+                        angle + angleVariation
+                    );
                 }
+
+                // Create additional random meteors in the viewport
+                for (let i = 0; i < 3; i++) {
+                    const randomX = Math.random() * window.innerWidth;
+                    const randomY = Math.random() * window.innerHeight;
+                    createMeteor(randomX, randomY, angle + (Math.random() - 0.5) * 60);
+                }
+
                 meteorsEnabled = false;
-                setTimeout(() => meteorsEnabled = true, 50);
+                setTimeout(() => meteorsEnabled = true, 30); // Reduced delay from 50 to 30
             }
 
             prevX = currentX;
@@ -352,19 +393,11 @@
             transition: background 0.5s ease;
         }
 
-        /* Style untuk meteor effect */
+        /* Update style untuk meteor */
         .meteor {
             position: fixed;
             pointer-events: none;
             z-index: 9997;
-            width: 20px;
-            height: 2px;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0.8),
-                rgba(255, 51, 102, 0.6),
-                transparent
-            );
             border-radius: 1px;
             animation: meteorFade 0.5s ease-out forwards;
             filter: blur(1px);
@@ -383,14 +416,18 @@
             box-shadow:
                 0 0 10px #fff,
                 0 0 20px #fff,
-                0 0 30px #FF3366,
-                0 0 40px #FF3366;
+                0 0 30px currentColor,
+                0 0 40px currentColor;
         }
 
         @keyframes meteorFade {
             0% {
                 opacity: 1;
                 transform: scale(1) translateX(0);
+            }
+            20% {
+                opacity: 1;
+                transform: scale(1.2) translateX(6px);
             }
             100% {
                 opacity: 0;

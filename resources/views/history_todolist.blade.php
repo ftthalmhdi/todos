@@ -5,9 +5,7 @@
 @section('header', 'Riwayat To-Do List')
 
 @section('content')
-    <!-- Rainbow Background Animation -->
     <div id="rainbow-bg" class="fixed top-0 left-0 w-full h-full -z-10"></div>
-
     <div class="space-y-8">
         <!-- Header Section -->
         <div class="bg-[#FFE066] border-4 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">

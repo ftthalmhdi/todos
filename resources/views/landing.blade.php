@@ -8,40 +8,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="min-h-screen font-['Space_Grotesk'] bg-[#F4D03F]">
-    <!-- Rainbow Background Animation -->
     <div id="rainbow-bg" class="fixed top-0 left-0 w-full h-full -z-10"></div>
-
-    <!-- Main Content -->
     <div class="min-h-screen flex items-center justify-center p-6">
         <div class="max-w-2xl w-full bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-            <!-- Header -->
             <div class="bg-[#FF3366] border-4 border-black p-6 -mt-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
                 <h1 class="text-4xl md:text-5xl font-bold text-white text-center">
                     To-Do List App
                 </h1>
             </div>
-
-            <!-- Description -->
             <div class="mt-8 bg-[#00CC99] border-4 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                 <p class="text-xl font-bold text-black text-center">
                     Kelola tugas harian Anda dengan mudah dan efisien.
                 </p>
             </div>
-
-            <!-- Buttons -->
             <div class="mt-8 flex flex-col md:flex-row gap-4 justify-center">
                 <a href="{{ route('register') }}"
                     class="neu-button bg-[#FF3366] text-white text-center text-lg">
                     Daftar Sekarang
                 </a>
-
                 <a href="{{ route('login') }}"
                     class="neu-button bg-[#3366FF] text-white text-center text-lg">
                     Login
                 </a>
             </div>
 
-            <!-- Features -->
             <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="bg-[#FFE066] border-4 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
                     <h3 class="font-bold text-lg mb-2">✨ Mudah Digunakan</h3>
@@ -54,13 +44,9 @@
             </div>
         </div>
     </div>
-
-    <!-- Background and Sparkle Effects -->
     <script>
-        // Rainbow Background Animation
         const rainbowBg = document.getElementById('rainbow-bg');
         let hue = 0;
-
         function updateBackground() {
             hue = (hue + 1) % 360;
             rainbowBg.style.background = `linear-gradient(${hue}deg,
@@ -75,7 +61,6 @@
 
         updateBackground();
 
-        // Sparkle Effects
         function createSparkles() {
             const types = ['regular', 'star', 'big'];
             const randomType = types[Math.floor(Math.random() * types.length)];
@@ -107,52 +92,42 @@
 
         setInterval(createSparkles, 200);
 
-        // Tambahkan fungsi untuk meteor effect
         function createMeteor(x, y, angle) {
             const meteor = document.createElement('div');
             meteor.className = 'meteor';
 
-            // Posisi awal meteor
             meteor.style.left = `${x}px`;
             meteor.style.top = `${y}px`;
 
-            // Rotasi sesuai arah gerakan
             meteor.style.transform = `rotate(${angle}deg)`;
 
             document.body.appendChild(meteor);
 
-            // Hapus meteor setelah animasi selesai
             setTimeout(() => meteor.remove(), 500);
         }
 
-        // Variabel untuk tracking posisi mouse
         let prevX = 0;
         let prevY = 0;
         let meteorsEnabled = true;
 
-        // Event listener untuk mouse movement
         document.addEventListener('mousemove', (e) => {
             if (!meteorsEnabled) return;
 
             const currentX = e.clientX;
             const currentY = e.clientY;
 
-            // Hitung kecepatan dan arah gerakan
             const deltaX = currentX - prevX;
             const deltaY = currentY - prevY;
             const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
             const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
 
-            // Buat meteor jika gerakan cukup cepat
             if (distance > 5) {
-                // Buat beberapa meteor dengan posisi random di sekitar cursor
                 for (let i = 0; i < 3; i++) {
                     const offsetX = Math.random() * 20 - 10;
                     const offsetY = Math.random() * 20 - 10;
                     createMeteor(currentX + offsetX, currentY + offsetY, angle);
                 }
 
-                // Throttle meteor creation
                 meteorsEnabled = false;
                 setTimeout(() => meteorsEnabled = true, 50);
             }
@@ -162,7 +137,6 @@
         });
     </script>
 
-    <!-- Tambahkan div untuk efek neon -->
     <div class="neon-container">
         <div class="neon-line neon-line-1"></div>
         <div class="neon-line neon-line-2"></div>
